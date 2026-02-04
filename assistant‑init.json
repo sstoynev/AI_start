@@ -1,0 +1,56 @@
+{
+  "description": "Initialization file that pulls configuration from a GitHub repository at the start of every chat session.",
+  "source": {
+    "type": "github_raw",
+    "url": "https://raw.githubusercontent.com/your‑username/assistant‑workspace/main/config.json",
+    "method": "GET",
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "settings_schema": {
+    "tone": {
+      "type": "string",
+      "enum": ["friendly", "formal", "concise", "technical", "casual"],
+      "default": "friendly",
+      "description": "Overall writing style."
+    },
+    "depth": {
+      "type": "string",
+      "enum": ["summary", "step-by-step", "full"],
+      "default": "step-by-step",
+      "description": "How much detail to give in explanations."
+    },
+    "output_format": {
+      "type": "string",
+      "enum": ["markdown", "plain", "json", "table"],
+      "default": "markdown",
+      "description": "Preferred format for every reply."
+    },
+    "no_external_links": {
+      "type": "boolean",
+      "default": true,
+      "description": "If true, I must never include clickable URLs in my answers."
+    },
+    "include_domains": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": ["software‑engineering", "data‑science"],
+      "description": "Topics I should prioritize."
+    },
+    "exclude_domains": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": ["politics"],
+      "description": "Topics I should avoid."
+    }
+  },
+  "fallback": {
+    "tone": "friendly",
+    "depth": "step-by-step",
+    "output_format": "markdown",
+    "no_external_links": true,
+    "include_domains": ["software-engineering", "data-science"],
+    "exclude_domains": ["politics"]
+  }
+}
